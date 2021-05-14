@@ -7,21 +7,19 @@ const loader = document.getElementById("loader");
 
 let apiQuotes = [];
 
-//show loading
-function loading() {
+function showLoadingSpinner() {
   loader.hidden = false;
   quoteContainer.hidden = true;
 }
 
-//Hide Loading
-function complete() {
+function removeLoadingSpinner() {
   quoteContainer.hidden = false;
   loader.hidden = true;
 }
 
 //show new quote
 function newQuote() {
-  loading();
+  showLoadingSpinner();
   //pick a random quote from localQuote from quotes.js array
   //   const quote = localQuotes[Math.floor(Math.random() * localQuotes.length)];
   //   console.log(quote);
@@ -42,26 +40,21 @@ function newQuote() {
   }
   // set quote, hide loader
   quoteText.textContent = quote.text;
-  complete();
+  removeLoadingSpinner();
 }
 // Get Quotes From API
 async function getQuotes() {
-  loading();
+  showLoadingSpinner();
   const apiUrl = "https://type.fit/api/quotes";
   try {
     const response = await fetch(apiUrl);
     apiQuotes = await response.json();
     newQuote();
-  } catch (error) {
-    //alert("no quotes");
-    //Catch Error Here
-  }
+  } catch (error) {}
 }
 // On api  Load
 getQuotes();
 
-//local
-//newQuote();
 // Tweet Quote
 function tweetQuote() {
   const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${authorText.textContent}`;
