@@ -1,3 +1,3 @@
 # quotes-generator
-https://yourwebwork.github.io/quotes-generator/
+# https://jogindrakumar.github.io/quotes-generator/
  
